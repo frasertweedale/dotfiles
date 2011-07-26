@@ -1,0 +1,166 @@
+# .zshrc - zsh configuration
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export BLOCKSIZE='K'
+export LANG='en_AU.UTF-8'
+
+PATH=~/dev/bin:$PATH  # dev hacks
+PATH=~/local/bin/$PATH
+PATH=~/.local/bin:$PATH
+PATH=/var/lib/gems/1.8/bin:$PATH  # Ruby Gems
+
+# set up EDITOR envvar and alias
+if which vim &>/dev/null
+then
+	export EDITOR='vim'
+	alias vi='vim'
+else
+	export EDITOR='vi'
+fi
+
+# other aliases
+alias l.='ls -d .*'
+alias ll='ls -lA'
+alias ll.='ls -ld .*'
+alias lock='lock -np'
+alias tmux='tmux -u'
+
+# set up PAGER envvar and alias
+if which less &>/dev/null
+then
+	export PAGER='less'
+	if echo $(uname -a) | grep -q GNU
+	then
+		# make GNU less behave like BSD more
+		alias more='less -EXm'
+	fi	# in BSD-land, LESS_IS_MORE.  See less(1)
+else
+	# less is missing
+	export PAGER='more'
+fi
+
+# ls colouring magic
+if echo $(uname -a) | grep -q GNU
+then
+	# GNU ls colour bullshit
+	export LS_COLORS='di=1;36:ln=0;36:so=1;35:pi=0;33:ex=1;32:su=1;33:sg=1;33:tw=1;34:ow=1;34'
+	alias ls='ls --color=auto'
+else
+	# colour config for sane ls
+	export LSCOLORS='GxgxFxdxCxDxDxhbadExEx'
+	export CLICOLOR='YES'
+	alias ls='ls -G'
+fi
+
+# host-specific configuration
+if echo $(hostname) | grep -q ^kryten
+then
+	export LD_LIBRARY_PATH=~/local/lib
+	PATH=~/local/bin:$PATH
+	umask 002
+fi
+
+# gpg/ssh-agent magic
+if [ -f $HOME/.gpg-agent-info ]
+then
+	eval $(cat $HOME/.gpg-agent-info | xargs echo export)
+	export GPG_TTY=$(tty)
+	echo UPDATESTARTUPTTY | gpg-connect-agent >/dev/null
+fi
+if [ -f $HOME/.ssh-agent-info ]
+then
+	eval $(cat $HOME/.ssh-agent-info) >/dev/null
+fi
+
+# general config
+prompt="[%m:%3~] %n%# "
+setopt autolist
+
+# functions
+function bug { cd /var/www/staff/$LOGNAME/projects/*/bug$1; }
+function cdsw {
+	[ -z "$1" ] && echo "phail!" && return 1
+	TWD=$(echo $PWD | sed s:$1:$2:)
+	if [ $TWD != $PWD ]; then cd $TWD;
+	else echo "$0: no substitution performed" && return 1; fi
+}
+function do_cdrc {
+	if [ -x ./.cdrc -a "$LAST_CDRC" != "$PWD" -a "$(tty)" != "not a tty" ]
+	then
+		echo "Executing .cdrc in $PWD:" >&2
+		if [ -x "$(which nl)" ]
+		then
+			cat ./.cdrc | nl -w8 >&2
+		else
+			cat -n ./.cdrc
+		fi
+		read -q line\?"orly? " && source ./.cdrc >&2 && LAST_CDRC=$PWD
+	fi
+}
+function cd {
+	if [ -z "$1" ] ; then builtin cd ; else builtin cd "$*" ; fi
+	[ $? -eq 0 ] || return $?
+	do_cdrc
+	return 0
+}
+function remove_subdirs_from_path {
+	[ -n "$1" ] || return 1
+	PATH=$(echo $PATH | sed s#$1\[^:]\*:##g)
+}
+function du {
+	if echo $(uname -a) | grep -q GNU
+	then
+		command du $(echo $* | sed -r "s,((-[[:alpha:]0]+)|-)d[[:space:]]*([[:digit:]]+),\2 --max-depth=\3,")
+	else
+		command du $*
+	fi
+}
+
+bindkey -v
+
+bindkey "^J" history-beginning-search-forward
+bindkey "^K" history-beginning-search-backward
+bindkey "^L" end-of-line
+
+fpath=(~/.zshfunctions $fpath)
+
+# VCS info
+
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable bzr cvs git hg svn
+
+zstyle ':vcs_info:*' stagedstr '%F{2}●%f'
+zstyle ':vcs_info:*' unstagedstr '%F{3}●%f'
+zstyle ':vcs_info:*' formats '[ %F{2}%b%f%c%u ] '
+zstyle ':vcs_info:*' actionformats '%[%F{2}%b|%a%f] '
+
+zstyle ':vcs_info:*' check-for-changes true
+
+zstyle ':vcs_info:bzr:*' use-simple true
+zstyle ':vcs_info:bzr:*' branchformat "%b"
+
+precmd () {
+	vcs_info
+}
+setopt prompt_subst
+prompt='[%m:%3~] ${vcs_info_msg_0_}%n%# '
+
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct
+zstyle ':completion:*' completions 3
+zstyle ':completion:*' format 'COMPLETING(%d)>'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' prompt 'FIXME(%e)>'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' squeeze-slashes true
+
+autoload -Uz compinit
+compinit
+
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000

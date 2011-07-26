@@ -1,0 +1,17 @@
+[user]
+	name = Fraser Tweedale
+	email = frasert@jumbolotteries.com
+[push]
+	default = tracking
+[color]
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	rank = shortlog -esn --no-merges
+	graph = log --graph --oneline
+	diffi = diff --cached
+[color]
+	diff = auto
+[log]
+	decorate = short
