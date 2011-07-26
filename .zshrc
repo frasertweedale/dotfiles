@@ -1,11 +1,14 @@
 # .zshrc - zsh configuration
 
-# DIRTY HACK
-#
-# If invoked as default shell, and a local zsh exists, invoke the local zsh
-#
-# Required because for some reason I can't chsh on kryten
-[ -x ~/.local/bin/zsh -a "$0" = "-zsh" ] && ~/.local/bin/zsh && exit
+# On kryten and legion, invoke a local zsh (system zsh is out of date)
+# and exit when it returns.  Check $0 to prevent recursion.
+if \
+	hostname | grep -q -E '^(kryten|legion)(\.|$)' \
+	&& [ -x ~/.local/bin/zsh -a "$0" = "-zsh" ]
+then
+	~/.local/bin/zsh
+	exit
+fi
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 export BLOCKSIZE='K'
@@ -58,9 +61,8 @@ else
 fi
 
 # host-specific configuration
-if echo $(hostname) | grep -q ^kryten
+if hostname | grep -q -E '^(kryten|legion)(\.|$)'
 then
-	export LD_LIBRARY_PATH=~/local/lib
 	PATH=~/dev/hacks:$PATH
 	umask 002
 fi
@@ -85,7 +87,7 @@ setopt autolist
 export VIRTUALENV_USE_DISTRIBUTE=1
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 PATH=~/.local/bin:$PATH
-. virtualenvwrapper.sh
+which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
 
 # functions
 function bug { cd /var/www/staff/$LOGNAME/projects/*/bug$1; }
