@@ -1,11 +1,16 @@
 # .zshrc - zsh configuration
 
+# DIRTY HACK
+#
+# If invoked as default shell, and a local zsh exists, invoke the local zsh
+#
+# Required because for some reason I can't chsh on kryten
+[ -x ~/.local/bin/zsh -a "$0" = "-zsh" ] && ~/.local/bin/zsh && exit
+
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 export BLOCKSIZE='K'
 export LANG='en_AU.UTF-8'
 
-PATH=~/dev/bin:$PATH  # dev hacks
-PATH=~/local/bin/$PATH
 PATH=~/.local/bin:$PATH
 PATH=/var/lib/gems/1.8/bin:$PATH  # Ruby Gems
 
@@ -56,7 +61,7 @@ fi
 if echo $(hostname) | grep -q ^kryten
 then
 	export LD_LIBRARY_PATH=~/local/lib
-	PATH=~/local/bin:$PATH
+	PATH=~/dev/hacks:$PATH
 	umask 002
 fi
 
@@ -76,8 +81,15 @@ fi
 prompt="[%m:%3~] %n%# "
 setopt autolist
 
+# development
+export VIRTUALENV_USE_DISTRIBUTE=1
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
+PATH=~/.local/bin:$PATH
+. virtualenvwrapper.sh
+
 # functions
 function bug { cd /var/www/staff/$LOGNAME/projects/*/bug$1; }
+function project { cd /var/www/staff/$LOGNAME/projects/$1; }
 function cdsw {
 	[ -z "$1" ] && echo "phail!" && return 1
 	TWD=$(echo $PWD | sed s:$1:$2:)
@@ -113,6 +125,18 @@ function du {
 		command du $(echo $* | sed -r "s,((-[[:alpha:]0]+)|-)d[[:space:]]*([[:digit:]]+),\2 --max-depth=\3,")
 	else
 		command du $*
+	fi
+}
+
+# create a tmux session in PWD, w/ session name = basename
+#  (if tmux is installed)
+function tmuxme {
+	if [ -f "$(/usr/bin/which tmux 2>/dev/null)" ]
+	then
+		TMUX= tmux new -s $(basename $PWD) -d || echo "failed!" && return 1
+		echo "created new tmux session $(basename $PWD)"
+	else
+		echo "tmux is not installed!" && return 1
 	fi
 }
 
