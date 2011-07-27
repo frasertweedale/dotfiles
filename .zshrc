@@ -10,7 +10,7 @@ then
 	exit
 fi
 
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 export BLOCKSIZE='K'
 export LANG='en_AU.UTF-8'
 
@@ -86,7 +86,6 @@ setopt autolist
 # development
 export VIRTUALENV_USE_DISTRIBUTE=1
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
-PATH=~/.local/bin:$PATH
 which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
 
 # functions
