@@ -1,15 +1,5 @@
 # .zshrc - zsh configuration
 
-# On kryten and legion, invoke a local zsh (system zsh is out of date)
-# and exit when it returns.  Check $0 to prevent recursion.
-if \
-	hostname | grep -q -E '^(kryten|legion)(\.|$)' \
-	&& [ -x ~/.local/bin/zsh -a "$0" = "-zsh" ]
-then
-	~/.local/bin/zsh
-	exit
-fi
-
 export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 export BLOCKSIZE='K'
 export LANG='en_AU.UTF-8'
@@ -60,13 +50,6 @@ else
 	alias ls='ls -G'
 fi
 
-# host-specific configuration
-if hostname | grep -q -E '^(kryten|legion)(\.|$)'
-then
-	PATH=~/dev/hacks:$PATH
-	umask 002
-fi
-
 # gpg/ssh-agent magic
 if [ -f $HOME/.gpg-agent-info ]
 then
@@ -89,8 +72,6 @@ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
 
 # functions
-function bug { cd /var/www/staff/$LOGNAME/projects/*/bug$1; }
-function project { cd /var/www/staff/$LOGNAME/projects/$1; }
 function cdsw {
 	[ -z "$1" ] && echo "phail!" && return 1
 	TWD=$(echo $PWD | sed s:$1:$2:)
