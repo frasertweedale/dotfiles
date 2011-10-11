@@ -3,7 +3,6 @@
 	email = frase@frase.id.au
 [push]
 	default = tracking
-[color]
 [alias]
 	co = checkout
 	ci = commit
