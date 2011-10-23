@@ -10,6 +10,8 @@
 	rank = shortlog -esn --no-merges
 	graph = log --graph --oneline
 	diffi = diff --cached
+	ff = merge --ff-only
+	sub = submodule
 [color]
 	diff = auto
 [log]
