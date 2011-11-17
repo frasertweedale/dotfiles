@@ -12,6 +12,9 @@
 	diffi = diff --cached
 	ff = merge --ff-only
 	sub = submodule
+	stat = diff --stat
+	stati = diff --cached --stat
+	tmerge = merge --no-ff --no-ff-only
 [color]
 	diff = auto
 [log]
