@@ -104,10 +104,6 @@ function cd {
 	do_cdrc
 	return 0
 }
-function remove_subdirs_from_path {
-	[ -n "$1" ] || return 1
-	PATH=$(echo $PATH | sed s#$1\[^:]\*:##g)
-}
 function du {
 	if echo $(uname -a) | grep -q GNU
 	then
@@ -116,6 +112,17 @@ function du {
 		command du $*
 	fi
 }
+for COMMAND in shutdown poweroff reboot halt fastboot fasthalt
+do
+	function $COMMAND {
+		if [ -n "$SSH_CONNECTION" ]
+		then
+			echo "SSH_CONNECTION=$SSH_CONNECTION"
+			read -q "LINE?Are you sure you wish to $0 $*?" || return
+		fi
+		command $0 $*
+	}
+done
 
 # create a tmux session in PWD, w/ session name = basename
 #  (if tmux is installed)
