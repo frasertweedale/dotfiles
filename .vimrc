@@ -29,6 +29,7 @@ inoremap # X#
 " filetype settings
 autocmd FileType *      set ts=8 sw=8 noet cin nosi
 autocmd FileType python set ts=4 sw=4 et nocin si
+autocmd FileType mail   set ts=4 sw=4 et nocin nosi tw=68
 
 " folding
 set foldmethod=indent
