@@ -145,6 +145,16 @@ bindkey "^L" end-of-line
 
 fpath=(~/.zshfunctions $fpath)
 
+# rvm info
+function rvm_info {
+	rvm_info_msg=""
+	if which rvm-prompt &>/dev/null
+	then
+		OUTPUT="$(rvm-prompt)"
+		[ -n "$OUTPUT" ] && rvm_info_msg="(%F{3}$OUTPUT%f) "
+	fi
+}
+
 # VCS info
 
 autoload -Uz vcs_info
@@ -163,9 +173,10 @@ zstyle ':vcs_info:bzr:*' branchformat "%b"
 
 precmd () {
 	vcs_info
+	rvm_info
 }
 setopt prompt_subst
-prompt='[%m:%3~] ${vcs_info_msg_0_}%n%# '
+prompt='[%m:%3~] ${rvm_info_msg}${vcs_info_msg_0_}%n%# '
 
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct
