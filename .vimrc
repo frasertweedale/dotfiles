@@ -11,25 +11,22 @@ set showmode
 set nohlsearch
 
 " general settings
-set ts=4
-set sw=4
-set noet
-set bs=indent,eol,start
 set nowrap
-set nu
-set cino=(s
+set number
+set cinoptions=(s
 set formatoptions+=ro
 set backspace=indent,eol,start
-set tw=0
 inoremap # X#
 
-" really required?
-"set fileformat=unix
-
 " filetype settings
-autocmd FileType *      set ts=8 sw=8 noet cin nosi
-autocmd FileType python set ts=4 sw=4 et nocin si
-autocmd FileType mail   set ts=4 sw=4 et nocin nosi tw=68
+autocmd FileType *	set sts=0 sw=8 noet tw=0 nocin si
+autocmd FileType gitcommit	set tw=68 nosi
+autocmd FileType html	set sts=4 sw=4 et
+autocmd FileType java	set cin nosi
+autocmd FileType mail	set sts=4 sw=4 et nosi tw=68
+autocmd FileType python	set sts=4 sw=4 et
+autocmd FileType ruby	set sts=2 sw=2 et
+autocmd FileType scss	set sts=4 sw=4 et
 
 " folding
 set foldmethod=indent
