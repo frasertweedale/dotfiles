@@ -5,7 +5,6 @@ export BLOCKSIZE='K'
 export LANG='en_AU.UTF-8'
 
 PATH=~/.local/bin:$PATH
-PATH=/var/lib/gems/1.8/bin:$PATH  # Ruby Gems
 
 # set up EDITOR envvar and alias
 if which vim &>/dev/null
