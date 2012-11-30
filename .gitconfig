@@ -15,6 +15,21 @@
 	stat = diff --stat
 	stati = diff --cached --stat
 	tmerge = merge --no-ff --no-ff-only
+	gerrit = "!f() { \n\
+			ACTION=$1 \n\
+			BRANCH=$2 \n\
+			shift 2 \n\
+			RECEIVEPACK=\"\" \n\
+			for REVIEWER in \"$@\"; do RECEIVEPACK=\"$RECEIVEPACK --reviewer '$REVIEWER'\"; done \n\
+			if [ -n \"$RECEIVEPACK\" ] \n\
+			then \n\
+				git push \"--receive-pack=git receive-pack $RECEIVEPACK\" gerrit HEAD:refs/$ACTION/$BRANCH \n\
+			else \n\
+				git push gerrit HEAD:refs/$ACTION/$BRANCH \n\
+			fi \n\
+		}; f"
+	draft = "!g() { git gerrit drafts \"$@\"; }; g"
+	publish = "!g() { git gerrit publish \"$@\"; }; g"
 [color]
 	diff = auto
 [log]
