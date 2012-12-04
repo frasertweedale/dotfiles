@@ -57,3 +57,7 @@ else
 	autocmd BufWinEnter * match  Underlined /[^\t]\zs\t\+\|\s\+$/
 	autocmd BufWinEnter * 2match Underlined /^\t*\zs \+\ze[^* ]/
 endif
+
+" plugins
+call pathogen#infect()
+filetype plugin indent on
