@@ -9,6 +9,7 @@ set ruler
 set laststatus=2
 set showmode
 set nohlsearch
+set cursorline
 
 " general settings
 set nowrap
@@ -35,6 +36,7 @@ set foldnestmax=5
 
 " syntax highlighting
 syntax enable
+hi CursorLine cterm=NONE ctermbg=DarkGrey
 hi Comment ctermfg=green
 hi Constant ctermfg=yellow
 hi String ctermfg=darkyellow
