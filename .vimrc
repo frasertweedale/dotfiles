@@ -19,15 +19,24 @@ set formatoptions+=ro
 set backspace=indent,eol,start
 inoremap # X#
 
+" filetype definitions
+autocmd BufRead,BufNewFile *.slim	setfiletype slim
+autocmd BufRead,BufNewFile *.coffee	setfiletype coffee
+
 " filetype settings
 autocmd FileType *	set sts=0 sw=8 noet tw=0 nocin si
-autocmd FileType gitcommit	set tw=68 nosi
+autocmd FileType coffee	set sts=2 sw=2 et
+autocmd FileType eruby	set sts=2 sw=2 et
+autocmd FileType gitcommit	set tw=68 et nosi
 autocmd FileType html	set sts=4 sw=4 et
-autocmd FileType java	set cin nosi
+autocmd FileType java	set sts=4 sw=4 et cin nosi
+autocmd FileType javascript	set sts=2 sw=2 et cin nosi
 autocmd FileType mail	set sts=4 sw=4 et nosi tw=68
 autocmd FileType python	set sts=4 sw=4 et
 autocmd FileType ruby	set sts=2 sw=2 et
-autocmd FileType scss	set sts=4 sw=4 et
+autocmd FileType scss	set sts=2 sw=2 et
+autocmd FileType slim	set sts=2 sw=2 et
+autocmd FileType yaml	set sts=2 sw=2 et
 
 " folding
 set foldmethod=indent
