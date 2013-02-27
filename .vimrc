@@ -1,5 +1,3 @@
-" .vimrc
-
 " swap file
 set dir=/var/tmp
 set noswapfile
@@ -10,6 +8,8 @@ set laststatus=2
 set showmode
 set nohlsearch
 set cursorline
+set listchars=tab:▶\ ,trail:␣
+set list
 
 " general settings
 set nowrap
@@ -52,22 +52,10 @@ hi String ctermfg=darkyellow
 hi Identifier ctermfg=darkcyan
 hi Function ctermfg=cyan
 hi Statement ctermfg=magenta
-hi SpecialKey cterm=underline ctermfg=DarkGrey
+hi SpecialKey ctermfg=DarkGrey
 
 " other highlighting
 hi Folded ctermfg=green ctermbg=none
-
-if version >= 702
-	" trailing whitespace
-	call matchadd('Underlined', '\s\+$')
-	" mark tabs with dark underline
-	call matchadd('SpecialKey', '\t', 0)
-	" tabs anywhere but start of line, encompassing adjacent whitespace
-	call matchadd('Underlined', '^\t* *[^\t]\+\zs\s*\t\+\s*')
-else
-	autocmd BufWinEnter * match  Underlined /[^\t]\zs\t\+\|\s\+$/
-	autocmd BufWinEnter * 2match Underlined /^\t*\zs \+\ze[^* ]/
-endif
 
 " plugins
 call pathogen#infect()
