@@ -21,7 +21,7 @@ alias ll='ls -lA'
 alias ll.='ls -ld .*'
 alias lock='lock -np'
 alias tmux='tmux -u'
-which ack &>/dev/null || (which ack-grep &>/dev/null && alias ack=ack-grep)
+which ack &>/dev/null || which ack-grep &>/dev/null && alias ack=ack-grep
 
 # set up PAGER envvar and alias
 if which less &>/dev/null
