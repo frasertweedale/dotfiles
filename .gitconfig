@@ -34,3 +34,5 @@
 	diff = auto
 [log]
 	decorate = short
+[rerere]
+	enabled = true
