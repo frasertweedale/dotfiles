@@ -8,7 +8,7 @@ set laststatus=2
 set showmode
 set nohlsearch
 set cursorline
-set listchars=tab:▶\ ,trail:␣
+set listchars=tab:‣\ ,trail:␣
 set list
 
 " general settings
