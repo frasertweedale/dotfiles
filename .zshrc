@@ -63,10 +63,13 @@ export GPG_AGENT_INFO=  # empty so gpg will fall back to standard socket
 prompt="[%m:%3~] %n%# "
 setopt autolist
 
-# development
-export VIRTUALENV_USE_DISTRIBUTE=1
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
-which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
+if [ "$(whoami)" != "root" ]
+then
+	# development
+	export VIRTUALENV_USE_DISTRIBUTE=1
+	export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
+	which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
+fi
 
 # functions
 function cdsw {
