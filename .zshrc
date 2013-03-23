@@ -67,6 +67,7 @@ if [ "$(whoami)" != "root" ]
 then
 	# development
 	export VIRTUALENV_USE_DISTRIBUTE=1
+	export VIRTUALENVWRAPPER_PYTHON="python3.3"
 	export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 	which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
 fi
