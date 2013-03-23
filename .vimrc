@@ -34,6 +34,7 @@ autocmd FileType javascript	set sts=2 sw=2 et cin nosi
 autocmd FileType mail	set sts=4 sw=4 et nosi tw=68
 autocmd FileType python	set sts=4 sw=4 et
 autocmd FileType ruby	set sts=2 sw=2 et
+autocmd FileType rst	set sts=2 sw=2 et tw=68
 autocmd FileType scss	set sts=2 sw=2 et
 autocmd FileType slim	set sts=2 sw=2 et
 autocmd FileType yaml	set sts=2 sw=2 et
