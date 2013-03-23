@@ -70,6 +70,7 @@ then
 	export VIRTUALENVWRAPPER_PYTHON="python3.3"
 	export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 	which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
 
 # functions
