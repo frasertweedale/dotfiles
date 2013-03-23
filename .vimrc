@@ -58,7 +58,5 @@ hi SpecialKey ctermfg=DarkGrey
 hi Folded ctermfg=green ctermbg=none
 
 " plugins
-if exists("*pathogen#infect")
-	call pathogen#infect()
-endif
+silent! call pathogen#infect()
 filetype plugin indent on
