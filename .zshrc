@@ -66,10 +66,21 @@ setopt autolist
 if [ "$(whoami)" != "root" ]
 then
 	# development
-	export VIRTUALENV_USE_DISTRIBUTE=1
-	export VIRTUALENVWRAPPER_PYTHON="python3.3"
-	export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
-	which virtualenvwrapper.sh &>/dev/null && . virtualenvwrapper.sh
+	if which virtualenvwrapper.sh &>/dev/null
+	then
+		VIRTUALENVWRAPPER_SCRIPT="virtualenvwrapper.sh"
+	elif [ -f "/etc/bash_completion.d/virtualenvwrapper" ]
+	then
+		VIRTUALENVWRAPPER_SCRIPT="/etc/bash_completion.d/virtualenvwrapper"
+	fi
+	if [ -n "$VIRTUALENVWRAPPER_SCRIPT" ]
+	then
+		export VIRTUALENV_USE_DISTRIBUTE=1
+		export VIRTUALENVWRAPPER_PYTHON="python3.3"
+		export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
+		source "$VIRTUALENVWRAPPER_SCRIPT"
+	fi
+
 	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
 
