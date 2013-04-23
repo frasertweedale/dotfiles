@@ -76,7 +76,7 @@ then
 	if [ -n "$VIRTUALENVWRAPPER_SCRIPT" ]
 	then
 		export VIRTUALENV_USE_DISTRIBUTE=1
-		export VIRTUALENVWRAPPER_PYTHON="python3.3"
+		BIN=$(which python3.3) && export VIRTUALENVWRAPPER_PYTHON="$BIN"
 		export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 		source "$VIRTUALENVWRAPPER_SCRIPT"
 	fi
