@@ -44,6 +44,7 @@ autocmd FileType yaml	set sts=2 sw=2 et
 set foldmethod=indent
 set foldminlines=5
 set foldnestmax=5
+set foldignore=
 
 " syntax highlighting
 syntax enable
