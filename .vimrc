@@ -18,6 +18,7 @@ set cinoptions=(s
 set formatoptions+=ro
 set backspace=indent,eol,start
 inoremap # X#
+let mapleader=","
 
 " filetype definitions
 autocmd BufRead,BufNewFile *.slim	setfiletype slim
