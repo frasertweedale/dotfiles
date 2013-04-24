@@ -56,6 +56,8 @@ hi Identifier ctermfg=darkcyan
 hi Function ctermfg=cyan
 hi Statement ctermfg=magenta
 hi SpecialKey ctermfg=DarkGrey
+hi Error ctermbg=NONE ctermfg=red cterm=bold,underline
+hi Todo ctermbg=NONE ctermfg=yellow cterm=bold,underline
 
 " other highlighting
 hi Folded ctermfg=green ctermbg=none
