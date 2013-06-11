@@ -61,6 +61,7 @@ hi Statement ctermfg=magenta
 hi SpecialKey ctermfg=DarkGrey
 hi Error ctermbg=NONE ctermfg=red cterm=bold,underline
 hi Todo ctermbg=NONE ctermfg=yellow cterm=bold,underline
+hi PmenuSel ctermbg=magenta ctermfg=black
 
 " other highlighting
 hi Folded ctermfg=green ctermbg=none
