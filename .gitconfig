@@ -30,6 +30,17 @@
 		}; f"
 	draft = "!g() { git gerrit drafts \"$@\"; }; g"
 	publish = "!g() { git gerrit publish \"$@\"; }; g"
+	foreach = "!f() { \n\
+			BRANCH=$(git symbolic-ref --short HEAD) \n\
+			REVS=$1 \n\
+			shift \n\
+			for REV in $(git rev-list --reverse \"$REVS\") \n\
+			do \n\
+				git checkout \"$REV\" \n\
+				sh -c \"$*\" \n\
+			done \n\
+			git checkout \"$BRANCH\" \n\
+		}; f"
 [color]
 	diff = auto
 [log]
