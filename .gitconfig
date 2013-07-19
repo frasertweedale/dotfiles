@@ -41,6 +41,10 @@
 			done \n\
 			git checkout \"$BRANCH\" \n\
 		}; f"
+	frankenstash = "!f() { \n\
+			touch $(git rev-parse --git-dir)/logs/refs/stash \n\
+			git update-ref refs/stash $1 \n\
+		}; f"
 [color]
 	diff = auto
 [log]
