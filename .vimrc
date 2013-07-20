@@ -67,5 +67,6 @@ hi PmenuSel ctermbg=magenta ctermfg=black
 hi Folded ctermfg=green ctermbg=none
 
 " plugins
-silent! call pathogen#infect()
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 filetype plugin indent on
