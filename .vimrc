@@ -18,6 +18,8 @@ set cinoptions=(s
 set formatoptions+=ro
 set backspace=indent,eol,start
 inoremap # X#
+map <F1> <Esc>
+imap <F1> <Esc>
 let mapleader=","
 
 " filetype definitions
