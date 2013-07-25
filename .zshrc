@@ -27,11 +27,7 @@ which ack-grep &>/dev/null && alias ack=ack-grep
 if which less &>/dev/null
 then
 	export PAGER='less'
-	if echo $(uname -a) | grep -q GNU
-	then
-		# make GNU less behave like BSD more
-		alias more='less -EXm'
-	fi	# in BSD-land, LESS_IS_MORE.  See less(1)
+	export LESS="--quit-if-one-screen --long-prompt --no-init --RAW-CONTROL-CHARS"
 else
 	# less is missing
 	export PAGER='more'
