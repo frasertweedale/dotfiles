@@ -27,7 +27,7 @@ which ack-grep &>/dev/null && alias ack=ack-grep
 if which less &>/dev/null
 then
 	export PAGER='less'
-	export LESS="--quit-if-one-screen --long-prompt --no-init --RAW-CONTROL-CHARS"
+	export LESS="--quit-if-one-screen --long-prompt --no-init --RAW-CONTROL-CHARS --chop-long-lines"
 else
 	# less is missing
 	export PAGER='more'
