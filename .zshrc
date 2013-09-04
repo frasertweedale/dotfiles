@@ -50,7 +50,7 @@ fi
 #  nowadays, thanks to --use-standard-socket, GnuPG doesn't need any of
 #  these, but mutt expects both GPG_TTY and GPG_AGENT_INFO to exist.
 export GPG_TTY=$(tty)
-export GPG_AGENT_INFO=  # empty so gpg will fall back to standard socket
+gpg-agent --use-standard-socket-p 2>/dev/null && export GPG_AGENT_INFO=
 
 # ssh env
 [ -f $HOME/.ssh-agent-info ] && . $HOME/.ssh-agent-info >/dev/null
