@@ -15,7 +15,11 @@
 	stat = diff --stat
 	stati = diff --cached --stat
 	tmerge = merge --no-ff --no-ff-only
-	ri = "!f() { git rebase --interactive \"HEAD~$1\"; }; f"
+	ri = "!f() { \n\
+			BASE=\"$1\" \n\
+			git rev-parse --verify --quiet \"$1\" || BASE=\"HEAD~$1\" \n\
+			git rebase --interactive \"$BASE\" \n\
+		}; f"
 	gerrit = "!f() { \n\
 			ACTION=$1 \n\
 			BRANCH=$2 \n\
