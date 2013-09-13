@@ -72,3 +72,8 @@ hi Folded ctermfg=green ctermbg=none
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 filetype plugin indent on
+
+" Unite
+call unite#set_profile('source/file', 'ignorecase', 1)
+call unite#set_profile('source/file_rec', 'ignorecase', 1)
+nnoremap <Leader>t :Unite -start-insert file_rec<Enter>
