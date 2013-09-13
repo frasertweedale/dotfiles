@@ -16,6 +16,3 @@
 [submodule ".vim/bundle/vim-tbone"]
 	path = .vim/bundle/vim-tbone
 	url = https://github.com/tpope/vim-tbone.git
-[submodule ".vim/bundle/vim-dispatch"]
-	path = .vim/bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch.git
