@@ -76,4 +76,6 @@ filetype plugin indent on
 " Unite
 call unite#set_profile('source/file', 'ignorecase', 1)
 call unite#set_profile('source/file_rec', 'ignorecase', 1)
+call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
+let g:unite_source_rec_max_cache_files = 99999
 nnoremap <Leader>t :Unite -start-insert file_rec<Enter>
