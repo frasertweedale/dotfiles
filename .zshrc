@@ -101,7 +101,7 @@ function do_cdrc {
 	fi
 }
 function cd {
-	if [ -z "$1" ] ; then builtin cd ; else builtin cd "$*" ; fi
+	builtin cd "$@"
 	[ $? -eq 0 ] || return $?
 	do_cdrc
 	return 0
