@@ -28,7 +28,7 @@ autocmd BufRead,BufNewFile *.coffee	setfiletype coffee
 
 " filetype settings
 autocmd FileType *	set sts=0 sw=8 noet tw=0 nocin si
-autocmd FileType cabal	set sts=4 sw=4 et nocin si
+autocmd FileType cabal	set sts=2 sw=2 et nocin si
 autocmd FileType coffee	set sts=2 sw=2 et
 autocmd FileType eruby	set sts=2 sw=2 et
 autocmd FileType gitcommit	set tw=68 et nosi
