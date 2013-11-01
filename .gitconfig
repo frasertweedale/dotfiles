@@ -9,6 +9,8 @@
 	st = status
 	rank = shortlog -esn --no-merges
 	graph = log --graph --oneline
+	g = !git graph
+	ga = !git graph --all
 	diffi = diff --cached
 	ff = merge --ff-only
 	sub = submodule
