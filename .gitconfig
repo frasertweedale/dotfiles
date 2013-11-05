@@ -8,6 +8,7 @@
 	ci = commit
 	st = status
 	rank = shortlog -esn --no-merges
+	fa = fetch --all
 	graph = log --graph --oneline
 	g = !git graph
 	ga = !git graph --all
