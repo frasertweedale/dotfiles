@@ -18,6 +18,7 @@
 	stat = diff --stat
 	stati = diff --cached --stat
 	tmerge = merge --no-ff --no-ff-only
+	pushup = "!f() { git push --set-upstream $1 $(git symbolic-ref --short HEAD); }; f"
 	ri = "!f() { \n\
 			BASE=\"$1\" \n\
 			git rev-parse --verify --quiet \"$1\" || BASE=\"HEAD~$1\" \n\
