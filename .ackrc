@@ -1,3 +1,4 @@
+--ignore-dir=.cabal-sandbox
 --ignore-dir=build
 --ignore-dir=dist
 --type-set=haml=.haml
