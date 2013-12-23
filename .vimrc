@@ -45,7 +45,7 @@ autocmd FileType rst	set sts=2 sw=2 et tw=68
 autocmd FileType scss	set sts=2 sw=2 et
 autocmd FileType slim	set sts=2 sw=2 et
 autocmd FileType sql	set sts=4 sw=4 et
-autocmd FileType tex	set sts=4 sw=4 et
+autocmd FileType tex	set sts=4 sw=4 et tw=68
 autocmd FileType yaml	set sts=2 sw=2 et
 
 " folding
