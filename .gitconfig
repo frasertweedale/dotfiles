@@ -17,7 +17,7 @@
 	sub = submodule
 	stat = diff --stat
 	stati = diff --cached --stat
-	tmerge = merge --no-ff --no-ff-only
+	tmerge = merge --no-ff
 	pushup = "!f() { git push --set-upstream $1 $(git symbolic-ref --short HEAD); }; f"
 	ri = "!f() { \n\
 			BASE=\"$1\" \n\
