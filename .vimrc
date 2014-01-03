@@ -3,6 +3,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-eunuch'
@@ -91,3 +92,6 @@ call unite#set_profile('source/file_rec', 'ignorecase', 1)
 call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 let g:unite_source_rec_max_cache_files = 99999
 nnoremap <Leader>t :Unite -start-insert file_rec<Enter>
+
+" completion
+let g:neocomplete#enable_at_startup = 1
