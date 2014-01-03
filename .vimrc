@@ -1,3 +1,17 @@
+" vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'Shougo/unite.vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-tbone'
+filetype plugin indent on
+
 " swap file
 set dir=/var/tmp
 set noswapfile
@@ -70,11 +84,6 @@ hi PmenuSel ctermbg=magenta ctermfg=black
 
 " other highlighting
 hi Folded ctermfg=green ctermbg=none
-
-" plugins
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-filetype plugin indent on
 
 " Unite
 call unite#set_profile('source/file', 'ignorecase', 1)
