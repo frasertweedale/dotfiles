@@ -3,6 +3,8 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+" requires neocomplete.vim
+Bundle 'eagletmt/neco-ghc'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-endwise'
