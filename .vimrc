@@ -1,7 +1,16 @@
 " vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+let s:bootstrap = 0
+try
+	call vundle#rc()
+catch /E117:/
+	let s:bootstrap = 1
+	silent !mkdir -p ~/.vim/bundle
+	silent !git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	redraw!
+	call vundle#rc()
+endtry
 Bundle 'gmarik/vundle'
 " requires vimproc.vim
 Bundle 'eagletmt/ghcmod-vim'
@@ -16,6 +25,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-tbone'
+if s:bootstrap
+	silent BundleInstall
+	quit
+end
 filetype plugin indent on
 
 " swap file
