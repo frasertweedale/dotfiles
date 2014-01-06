@@ -78,7 +78,6 @@ then
 				&& export VIRTUALENVWRAPPER_PYTHON="$PYTHON_BIN" \
 				&& break
 		done
-		export VIRTUALENV_USE_DISTRIBUTE=1
 		export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 		source "$VIRTUALENVWRAPPER_SCRIPT"
 	fi
