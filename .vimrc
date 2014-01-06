@@ -1,33 +1,31 @@
-" vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle/
+" neobundle
+set rtp+=~/.vim/bundle/neobundle.vim/
 let s:bootstrap = 0
 try
-	call vundle#rc()
+	call neobundle#rc()
 catch /E117:/
 	let s:bootstrap = 1
 	silent !mkdir -p ~/.vim/bundle
-	silent !git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	silent !git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 	redraw!
-	call vundle#rc()
+	call neobundle#rc()
 endtry
-Bundle 'gmarik/vundle'
+NeoBundleFetch 'Shougo/neobundle'
 " requires vimproc.vim
-Bundle 'eagletmt/ghcmod-vim'
+NeoBundle 'eagletmt/ghcmod-vim'
 " requires neocomplete.vim
-Bundle 'eagletmt/neco-ghc'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-tbone'
+NeoBundle 'eagletmt/neco-ghc'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-tbone'
 if s:bootstrap
-	silent BundleInstall
-	quit
+	NeoBundleInstall
 end
 filetype plugin indent on
 
