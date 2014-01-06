@@ -1,6 +1,6 @@
 " neobundle
 let g:make = 'gmake'
-if system('uname -a') == 'GNU/Linux'
+if system('uname -o') =~ '^GNU/'
 	let g:make = 'make'
 endif
 set rtp+=~/.vim/bundle/neobundle.vim/
