@@ -1,4 +1,8 @@
 " neobundle
+let g:make = 'gmake'
+if system('uname -a') == 'GNU/Linux'
+	let g:make = 'make'
+endif
 set rtp+=~/.vim/bundle/neobundle.vim/
 let s:bootstrap = 0
 try
@@ -17,7 +21,7 @@ NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-fugitive'
