@@ -71,8 +71,14 @@ then
 	fi
 	if [ -n "$VIRTUALENVWRAPPER_SCRIPT" ]
 	then
+		for PYTHON_PROG in python3 python2
+		do
+			PYTHON_BIN=$(which $PYTHON_PROG 2>/dev/null) \
+				&& $PYTHON_BIN -c 'import virtualenvwrapper' 2>/dev/null \
+				&& export VIRTUALENVWRAPPER_PYTHON="$PYTHON_BIN" \
+				&& break
+		done
 		export VIRTUALENV_USE_DISTRIBUTE=1
-		BIN=$(which python3.3) && export VIRTUALENVWRAPPER_PYTHON="$BIN"
 		export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 		source "$VIRTUALENVWRAPPER_SCRIPT"
 	fi
