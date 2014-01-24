@@ -81,8 +81,8 @@ then
 		export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--never-download"
 		source "$VIRTUALENVWRAPPER_SCRIPT"
 	fi
-
 fi
+export GIT_MERGE_AUTOEDIT=no  # don't bother me
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
