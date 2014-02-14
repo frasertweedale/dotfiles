@@ -117,6 +117,10 @@ nnoremap <Leader>t :Unite -start-insert file_rec<Enter>
 let g:neocomplete#enable_at_startup = 1
 
 " ghcmod-vim
-nnoremap <F2> :GhcModType<Enter>
-nnoremap <silent> <F3> :GhcModTypeClear<Enter>
-autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+silent !which ghc-mod
+redraw!
+if !v:shell_error
+	nnoremap <F2> :GhcModType<Enter>
+	nnoremap <silent> <F3> :GhcModTypeClear<Enter>
+	autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+endif
