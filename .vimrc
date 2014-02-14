@@ -14,7 +14,7 @@ catch /E117:/
 	redraw!
 	call neobundle#rc()
 endtry
-NeoBundleFetch 'Shougo/neobundle'
+NeoBundleFetch 'Shougo/neobundle.vim'
 " requires vimproc.vim
 NeoBundle 'eagletmt/ghcmod-vim'
 " requires neocomplete.vim
