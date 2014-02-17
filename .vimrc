@@ -117,7 +117,7 @@ nnoremap <Leader>t :Unite -start-insert file_rec<Enter>
 let g:neocomplete#enable_at_startup = 1
 
 " ghcmod-vim
-silent !which ghc-mod
+silent !which ghc-mod >/dev/null 2>&1
 redraw!
 if !v:shell_error
 	nnoremap <F2> :GhcModType<Enter>
