@@ -22,7 +22,8 @@
 	ri = "!f() { \n\
 			BASE=\"$1\" \n\
 			git rev-parse --verify --quiet \"$1\" || BASE=\"HEAD~$1\" \n\
-			git rebase --interactive \"$BASE\" \n\
+			shift \n\
+			git rebase --interactive \"$BASE\" \"$@\" \n\
 		}; f"
 	gerrit = "!f() { \n\
 			ACTION=$1 \n\
