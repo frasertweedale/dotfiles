@@ -38,6 +38,7 @@ set dir=/var/tmp
 set noswapfile
 
 " ui
+set t_Co=8
 set ruler
 set laststatus=2
 set showmode
