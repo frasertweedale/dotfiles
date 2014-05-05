@@ -17,9 +17,11 @@ endtry
 NeoBundleFetch 'Shougo/neobundle.vim'
 " requires vimproc.vim
 NeoBundle 'eagletmt/ghcmod-vim'
-" requires neocomplete.vim
-NeoBundle 'eagletmt/neco-ghc'
-NeoBundle 'Shougo/neocomplete.vim'
+if has('lua')
+  " requires neocomplete.vim
+  NeoBundle 'eagletmt/neco-ghc'
+  NeoBundle 'Shougo/neocomplete.vim'
+endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
 NeoBundle 'tpope/vim-endwise'
