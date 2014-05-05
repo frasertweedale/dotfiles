@@ -87,6 +87,12 @@ export GIT_MERGE_AUTOEDIT=no  # don't bother me
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
+# set up svnlite alias
+if ! which svn &>/dev/null && which svnlite &>/dev/null
+then
+	alias svn='svnlite'
+fi
+
 # functions
 function cdsw {
 	[ -z "$1" ] && echo "phail!" && return 1
