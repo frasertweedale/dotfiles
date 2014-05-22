@@ -97,25 +97,6 @@ function cdsw {
 	if [ $TWD != $PWD ]; then cd $TWD;
 	else echo "$0: no substitution performed" && return 1; fi
 }
-function do_cdrc {
-	if [ -x ./.cdrc -a "$LAST_CDRC" != "$PWD" -a "$(tty)" != "not a tty" ]
-	then
-		echo "Executing .cdrc in $PWD:" >&2
-		if [ -x "$(which nl)" ]
-		then
-			cat ./.cdrc | nl -w8 >&2
-		else
-			cat -n ./.cdrc
-		fi
-		read -q line\?"orly? " && source ./.cdrc >&2 && LAST_CDRC=$PWD
-	fi
-}
-function cd {
-	builtin cd "$@"
-	[ $? -eq 0 ] || return $?
-	do_cdrc
-	return 0
-}
 function du {
 	if echo $(uname -a) | grep -q GNU
 	then
