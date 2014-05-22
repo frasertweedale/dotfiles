@@ -7,8 +7,7 @@ export LANG='en_AU.UTF-8'
 PATH=~/.cabal/bin:~/.local/bin:$PATH
 
 # set up EDITOR envvar and alias
-if which vim &>/dev/null
-then
+if command -v vim >/dev/null; then
 	export EDITOR='vim'
 	alias vi='vim'
 else
@@ -21,11 +20,10 @@ alias ll='ls -lA'
 alias ll.='ls -ld .*'
 alias lock='lock -np'
 alias tmux='tmux -u'
-which ack-grep &>/dev/null && alias ack=ack-grep
+command -v ack-grep >/dev/null && alias ack=ack-grep
 
 # set up PAGER envvar and alias
-if which less &>/dev/null
-then
+if command -v less >/dev/null; then
 	export PAGER='less'
 	export LESS="--quit-if-one-screen --long-prompt --no-init --RAW-CONTROL-CHARS --chop-long-lines"
 else
@@ -62,8 +60,7 @@ setopt autolist
 if [ "$(whoami)" != "root" ]
 then
 	# development
-	if which virtualenvwrapper.sh &>/dev/null
-	then
+	if command -v virtualenvwrapper.sh >/dev/null; then
 		VIRTUALENVWRAPPER_SCRIPT="virtualenvwrapper.sh"
 	elif [ -f "/etc/bash_completion.d/virtualenvwrapper" ]
 	then
@@ -73,7 +70,7 @@ then
 	then
 		for PYTHON_PROG in python3 python2
 		do
-			PYTHON_BIN=$(which $PYTHON_PROG 2>/dev/null) \
+			PYTHON_BIN=$(command -v $PYTHON_PROG) \
 				&& $PYTHON_BIN -c 'import virtualenvwrapper' 2>/dev/null \
 				&& export VIRTUALENVWRAPPER_PYTHON="$PYTHON_BIN" \
 				&& break
@@ -142,8 +139,7 @@ done
 # create a tmux session in PWD, w/ session name = basename
 #  (if tmux is installed)
 function tmuxme {
-	if [ -f "$(/usr/bin/which tmux 2>/dev/null)" ]
-	then
+	if command -v tmux >/dev/null; then
 		TMUX= tmux new -s $(basename $PWD) -d || echo "failed!" && return 1
 		echo "created new tmux session $(basename $PWD)"
 	else
@@ -162,8 +158,7 @@ fpath=(~/.zshfunctions $fpath)
 # rvm info
 function rvm_info {
 	rvm_info_msg=""
-	if which rvm-prompt &>/dev/null
-	then
+	if command -v rvm-prompt >/dev/null; then
 		OUTPUT="$(rvm-prompt)"
 		[ -n "$OUTPUT" ] && rvm_info_msg="(%F{3}$OUTPUT%f) "
 	fi
