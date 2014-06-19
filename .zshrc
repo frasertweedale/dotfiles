@@ -13,6 +13,7 @@ if command -v vim >/dev/null; then
 else
 	export EDITOR='vi'
 fi
+alias emacs='emacs -nw'
 
 # other aliases
 alias l.='ls -d .*'
