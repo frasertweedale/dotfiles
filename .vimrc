@@ -72,6 +72,7 @@ autocmd FileType coffee	set sts=2 sw=2 et
 autocmd FileType eruby	set sts=2 sw=2 et
 autocmd FileType gitcommit	set tw=68 et nosi
 autocmd FileType haskell	set sts=2 sw=2 et
+autocmd FileType chaskell	set sts=2 sw=2 et
 autocmd FileType html	set sts=4 sw=4 et
 autocmd FileType java	set sts=4 sw=4 et cin nosi
 autocmd FileType javascript	set sts=2 sw=2 et cin nosi
