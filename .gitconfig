@@ -51,6 +51,19 @@
 			done \n\
 			git checkout \"$BRANCH\" \n\
 		}; f"
+	fp = "!f() { \n\
+			PROJECT=$(basename $(git rev-parse --show-toplevel)) \n\
+			BASE=\"$1\" \n\
+			git rev-parse --verify --quiet \"$1\" || BASE=\"HEAD~$1\" \n\
+			START_NUMBER=$2 \n\
+			for PATCH in $(git format-patch -M -C --patience --full-index --start-number \"$START_NUMBER\" \"$BASE..\") \n\
+			do \n\
+				SEQ=$(echo $PATCH | cut -d \"-\" -f 1) \n\
+				SUMMARY=$(echo $PATCH | cut -d \"-\" -f 2-) \n\
+				[ -z \"$3\" ] && VERSION=\"\" || VERSION=\"-$3\" \n\
+				mv $PATCH $PROJECT-$LOGNAME-$SEQ$VERSION-$SUMMARY \n\
+			done \n\
+		}; f"
 	frankenstash = "!f() { \n\
 			touch $(git rev-parse --git-dir)/logs/refs/stash \n\
 			git update-ref refs/stash $1 \n\
