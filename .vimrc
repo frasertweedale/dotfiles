@@ -41,6 +41,7 @@ set dir=/var/tmp
 set noswapfile
 
 " ui
+set mouse=""
 set t_Co=8
 set ruler
 set laststatus=2
