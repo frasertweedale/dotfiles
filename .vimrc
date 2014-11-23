@@ -71,6 +71,7 @@ set noundofile
 " filetype definitions
 autocmd BufRead,BufNewFile *.slim	setfiletype slim
 autocmd BufRead,BufNewFile *.coffee	setfiletype coffee
+autocmd BufRead,BufNewFile,BufFilePre *.md set filetype=markdown
 
 " filetype settings
 autocmd FileType *	set sts=0 sw=8 noet tw=0 nocin si
