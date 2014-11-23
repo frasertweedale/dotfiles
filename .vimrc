@@ -50,6 +50,8 @@ set nohlsearch
 set cursorline
 set listchars=tab:‣\ ,trail:␣
 set list
+set noincsearch
+set noshowcmd
 
 " general settings
 set nowrap
@@ -61,6 +63,10 @@ inoremap # X#
 map <F1> <Esc>
 imap <F1> <Esc>
 let mapleader=","
+
+" filesystem settings
+set nobackup
+set noundofile
 
 " filetype definitions
 autocmd BufRead,BufNewFile *.slim	setfiletype slim
