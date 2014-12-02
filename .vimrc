@@ -6,13 +6,13 @@ endif
 set rtp+=~/.vim/bundle/neobundle.vim/
 let s:bootstrap = 0
 try
-	call neobundle#rc()
+	call neobundle#begin(expand('~/.vim/bundle/'))
 catch /E117:/
 	let s:bootstrap = 1
 	silent !mkdir -p ~/.vim/bundle
 	silent !git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 	redraw!
-	call neobundle#rc()
+	call neobundle#begin(expand('~/.vim/bundle/'))
 endtry
 NeoBundleFetch 'Shougo/neobundle.vim'
 " requires vimproc.vim
@@ -34,6 +34,7 @@ NeoBundle 'nkpart/slide-madness'
 if s:bootstrap
 	NeoBundleInstall
 end
+call neobundle#end()
 filetype plugin indent on
 
 " swap file
@@ -124,11 +125,9 @@ hi PmenuSel ctermbg=magenta ctermfg=black
 hi Folded ctermfg=green ctermbg=none
 
 " Unite
-call unite#set_profile('source/file', 'ignorecase', 1)
-call unite#set_profile('source/file_rec', 'ignorecase', 1)
 call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 let g:unite_source_rec_max_cache_files = 99999
-nnoremap <Leader>t :Unite -start-insert file_rec<Enter>
+nnoremap <Leader>t :Unite -start-insert -ignorecase file_rec<Enter>
 
 " completion
 let g:neocomplete#enable_at_startup = 1
