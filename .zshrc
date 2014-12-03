@@ -80,6 +80,7 @@ then
 		source "$VIRTUALENVWRAPPER_SCRIPT"
 	fi
 fi
+[ which gcc &>/dev/null ] || export IDRIS_CC=cc
 export GIT_MERGE_AUTOEDIT=no  # don't bother me
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
