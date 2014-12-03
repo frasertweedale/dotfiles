@@ -31,6 +31,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-tbone'
 NeoBundle 'nkpart/slide-madness'
+NeoBundle 'idris-hackers/idris-vim'
 if s:bootstrap
 	NeoBundleInstall
 end
