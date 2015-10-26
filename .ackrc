@@ -1,8 +1,0 @@
---ignore-dir=.cabal-sandbox
---ignore-dir=build
---ignore-dir=dist
---type-set=haml=.haml
---type-set=ledger=.dat
---type-set=scss=.scss
---type-set=slim=.slim
---type-set=coffee=.coffee
