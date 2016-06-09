@@ -80,3 +80,4 @@
 	enabled = true
 [rebase]
 	autostash = true
+	autosquash = true
