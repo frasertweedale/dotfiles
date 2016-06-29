@@ -69,7 +69,8 @@
 			git update-ref refs/stash $1 \n\
 		}; f"
 	review-pr = "!f() { \n\
-		git fetch github pull/$1/head \n\
+		[ -n "$2" ] && REMOTE=$2 || REMOTE=github \n\
+		git fetch $REMOTE pull/$1/head \n\
 		git checkout -b pull/$1 FETCH_HEAD \n\
 	}; f"
 [color]
