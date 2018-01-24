@@ -80,6 +80,28 @@
 		git fetch $REMOTE pull/$1/head \n\
 		git checkout -B pull/$1 FETCH_HEAD \n\
 	}; f"
+	orphan-branch = "!f() { \n\
+		export GIT_INDEX_FILE=$(git rev-parse --git-dir)/index-tmp \n\
+		REF=refs/heads/$1 \n\
+		git read-tree --empty \n\
+		TREE=$(git write-tree) \n\
+		COMMIT=$(git commit-tree \"$TREE\" -m \"new empty orphan branch\") \n\
+		git update-ref \"$REF\" \"$COMMIT\" \n\
+	}; f"
+	snapshot = "!f() { \n\
+		# decide index file before overriding work tree \n\
+		export GIT_INDEX_FILE=$(git rev-parse --absolute-git-dir)/index-tmp \n\
+		export GIT_WORK_TREE=$1 \n\
+		REF=refs/heads/$2 \n\
+		git read-tree \"$REF\" \n\
+		git add --all --intent-to-add \n\
+		git diff --quiet && exit \n\
+		git add --all \n\
+		TREE=$(git write-tree) \n\
+		COMMIT=$(git commit-tree \"$TREE\" -p \"$REF\" -m \"snapshot $(date '+%y-%m-%d %H:%M')\") \n\
+		git update-ref \"$REF\" \"$COMMIT\" \n\
+	}; f"
+
 [color]
 	diff = auto
 [log]
