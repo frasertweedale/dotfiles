@@ -19,7 +19,7 @@
 	stati = diff --cached --stat
 	tmerge = merge --no-ff
 	pushup = "!f() { \n\
-			REMOTE=$(git remote |grep github) || REMOTE=origin \n\
+			REMOTE=$(git remote |grep github) || REMOTE=$(git remote | grep pagure) || REMOTE=origin \n\
 			BRANCH=$(git symbolic-ref --short HEAD) \n\
 			git push --set-upstream \"$REMOTE\" $BRANCH:refs/heads/$BRANCH \n\
 		}; f"
