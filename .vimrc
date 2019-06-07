@@ -56,6 +56,7 @@ set noincsearch
 set noshowcmd
 
 " general settings
+set nomodeline
 set nowrap
 set number
 set cinoptions=(s
