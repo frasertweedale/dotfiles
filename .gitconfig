@@ -3,6 +3,8 @@
 	email = frase@frase.id.au
 [push]
 	default = upstream
+[pull]
+	ff = only
 [alias]
 	co = checkout
 	ci = commit
