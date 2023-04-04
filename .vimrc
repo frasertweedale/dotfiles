@@ -88,7 +88,7 @@ autocmd FileType html	set sts=4 sw=4 et
 autocmd FileType java	set sts=4 sw=4 et cin nosi
 autocmd FileType javascript	set sts=2 sw=2 et cin nosi
 autocmd FileType mail	set sts=4 sw=4 et nosi tw=68
-autocmd FileType markdown	set sts=4 sw=4 et tw=68
+autocmd FileType markdown	set sts=2 sw=2 et tw=68
 autocmd FileType perl	set sts=4 sw=4 et
 autocmd FileType python	set sts=4 sw=4 et
 autocmd FileType ruby	set sts=2 sw=2 et
