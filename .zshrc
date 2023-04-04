@@ -7,6 +7,8 @@ export LANG='en_AU.UTF-8'
 PATH=~/go/bin:~/.cabal/bin:~/.local/bin:$PATH
 export GOPATH=~/go
 
+export LIBVIRT_DEFAULT_URI=qemu:///system
+
 # set up EDITOR envvar and alias
 if command -v vim >/dev/null; then
 	export EDITOR='vim'
