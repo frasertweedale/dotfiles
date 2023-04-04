@@ -4,7 +4,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 export BLOCKSIZE='K'
 export LANG='en_AU.UTF-8'
 
-PATH=~/.cabal/bin:~/.local/bin:$PATH
+PATH=~/go/bin:~/.cabal/bin:~/.local/bin:$PATH
+export GOPATH=~/go
 
 # set up EDITOR envvar and alias
 if command -v vim >/dev/null; then
