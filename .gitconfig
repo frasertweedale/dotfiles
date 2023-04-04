@@ -117,3 +117,5 @@
 	algorithm = patience
 [fetch]
 	prune = true
+[advice]
+	skippedCherryPicks = false
