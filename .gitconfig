@@ -82,6 +82,14 @@
 		git fetch $REMOTE pull/$1/head \n\
 		git checkout -B pull/$1 FETCH_HEAD \n\
 	}; f"
+	review-mr = "!f() { \n\
+		# if remote argument ($2) given, use it \n\
+		# otherwise use 'origin' if it exists \n\
+		# otherwise use 'gitlab' \n\
+		[ -n \"$2\" ] && REMOTE=$2 || REMOTE=$(git remote |grep origin) || REMOTE=gitlab \n\
+		git fetch $REMOTE merge-requests/$1/head \n\
+		git checkout -B mr/$1 FETCH_HEAD \n\
+	}; f"
 	orphan-branch = "!f() { \n\
 		export GIT_INDEX_FILE=$(git rev-parse --git-dir)/index-tmp \n\
 		REF=refs/heads/$1 \n\
