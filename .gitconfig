@@ -127,3 +127,5 @@
 	prune = true
 [advice]
 	skippedCherryPicks = false
+[pull]
+	ff = only
