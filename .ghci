@@ -1,3 +1,4 @@
+:set local-config ignore
 :set prompt "λ> "
 :set -XOverloadedStrings
 :set -XFlexibleContexts
