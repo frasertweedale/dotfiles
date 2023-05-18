@@ -54,9 +54,6 @@ fi
 export GPG_TTY=$(tty)
 gpg-agent --use-standard-socket-p 2>/dev/null && export GPG_AGENT_INFO=
 
-# ssh env
-[ -f $HOME/.ssh-agent-info ] && . $HOME/.ssh-agent-info >/dev/null
-
 # general config
 prompt="[%m:%3~] %n%# "
 setopt autolist
