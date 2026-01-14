@@ -100,7 +100,10 @@
 	}; f"
 	snapshot = "!f() { \n\
 		# decide index file before overriding work tree \n\
-		export GIT_INDEX_FILE=$(git rev-parse --absolute-git-dir)/index-tmp \n\
+		cd $GIT_PREFIX \n\
+		export GIT_PREFIX= \n\
+		export GIT_DIR=$(git rev-parse --absolute-git-dir) \n\
+		export GIT_INDEX_FILE=$GIT_DIR/index-tmp \n\
 		export GIT_WORK_TREE=$1 \n\
 		REF=refs/heads/$2 \n\
 		git read-tree \"$REF\" \n\
