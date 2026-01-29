@@ -111,7 +111,7 @@
 		git diff --quiet && exit \n\
 		git add --all \n\
 		TREE=$(git write-tree) \n\
-		COMMIT=$(git commit-tree \"$TREE\" -p \"$REF\" -m \"snapshot $(date '+%y-%m-%d %H:%M')\") \n\
+		COMMIT=$(git commit-tree \"$TREE\" -p \"$REF\" -m \"snapshot $(date '+%y-%m-%d %H:%M') $3\") \n\
 		git update-ref \"$REF\" \"$COMMIT\" \n\
 	}; f"
 
