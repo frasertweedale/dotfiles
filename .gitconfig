@@ -74,21 +74,24 @@
 			touch $(git rev-parse --git-dir)/logs/refs/stash \n\
 			git update-ref refs/stash $1 \n\
 		}; f"
-	review-pr = "!f() { \n\
-		# if remote argument ($2) given, use it \n\
-		# otherwise use 'origin' if it exists \n\
-		# otherwise use 'github' \n\
-		[ -n \"$2\" ] && REMOTE=$2 || REMOTE=$(git remote |grep origin) || REMOTE=github \n\
-		git fetch $REMOTE pull/$1/head \n\
-		git checkout -B pull/$1 FETCH_HEAD \n\
-	}; f"
-	review-mr = "!f() { \n\
-		# if remote argument ($2) given, use it \n\
-		# otherwise use 'origin' if it exists \n\
-		# otherwise use 'gitlab' \n\
-		[ -n \"$2\" ] && REMOTE=$2 || REMOTE=$(git remote |grep origin) || REMOTE=gitlab \n\
-		git fetch $REMOTE merge-requests/$1/head \n\
-		git checkout -B mr/$1 FETCH_HEAD \n\
+	review = "!f() { \n\
+		# Fetch a PR/MR by number and check it out as review/$1. \n\
+		# Prefers origin; falls back to remote named github/gitlab/codeberg/pagure. \n\
+		# Schema is determined by remote URL: \n\
+		#   *gitlab* -> merge-requests/$1/head (GitLab MR) \n\
+		#   * -> pull/$1/head (GitHub, Codeberg, Pagure, Gitea) \n\
+		URL=$(git remote get-url \"$2\"   2>/dev/null) || \n\
+		URL=$(git remote get-url origin   2>/dev/null) || \n\
+		URL=$(git remote get-url github   2>/dev/null) || \n\
+		URL=$(git remote get-url gitlab   2>/dev/null) || \n\
+		URL=$(git remote get-url codeberg 2>/dev/null) || \n\
+		URL=$(git remote get-url pagure   2>/dev/null) \n\
+		case \"$URL\" in \n\
+			*gitlab*) REF=merge-requests/$1/head ;; \n\
+			*)        REF=pull/$1/head           ;; \n\
+		esac \n\
+		git fetch \"$URL\" \"$REF\" \n\
+		git checkout -B review/$1 FETCH_HEAD \n\
 	}; f"
 	orphan-branch = "!f() { \n\
 		export GIT_INDEX_FILE=$(git rev-parse --git-dir)/index-tmp \n\
