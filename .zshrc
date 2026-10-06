@@ -188,3 +188,5 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+
+[ -f "/home/$USER/.config/claude-code-vertex/env.sh" ] && . "/home/$USER/.config/claude-code-vertex/env.sh"
